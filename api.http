@@ -1,0 +1,30 @@
+//endpoint components, products, suppliers
+
+GET http://localhost:3000
+
+### get all data product
+GET http://localhost:3000/components
+
+### Get detail products
+GET http://localhost:3000/components/1
+
+### Create data products
+POST http://localhost:3000/suppliers
+Content-Type: application/json
+
+{
+    "name": "Beni",
+    "address": "Jakarta"
+}
+
+### Update data product
+PUT http://localhost:3000/suppliers/6
+Content-Type: application/json
+
+{
+     "name": "Ganti Nama supplier",
+     "address": "ganti alamat supplier"
+}
+
+### Delete data product
+DELETE  http://localhost:3000/components/4

@@ -1,0 +1,738 @@
+openapi: 3.0.0
+
+info:
+
+  title: Toko 3.0
+
+  description: |-
+
+    Aplikasi data component, product, supplier Toko
+
+  contact:
+
+    email: rizkymaulanafrds@gmail.com
+
+  version: 1.0.0
+
+servers:
+
+  - url: http://localhost:8000
+    description: Test local computer
+  - url: https://test.toko.com
+    description: Testing
+  - url: https://toko.com
+    description: Production
+tags:
+  - name: Suppliers
+    description: Supplier data
+  - name: Products
+    description: Product Data
+  - name: Components
+    description: Component Data
+paths:
+  /suppliers:
+    post:
+      tags:
+        - Suppliers
+      summary: Mendaftarkan data supplier baru
+      description: Mendafdarkan data supplier baru(desc)
+      operationId: post-register-supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: rizky
+                address:
+                  type: string
+                  example: bogor
+      responses:
+        "201":
+          description: Success Register
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: rizky
+                      address:
+                        type: string
+                        example: bogor
+    get:
+      tags:
+        - Suppliers
+      summary: GetAll Supplier data
+      description: GetAll Supplier data(desc)
+      responses:
+        "200":
+          description: Success get all data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Rizky
+                        address:
+                          type: string
+                          example: bogor
+  /suppliers/{id}:
+    get:
+      tags:
+        - Suppliers
+      summary: Get Supplier data with id
+      description: Get Supplier data with id(desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of supplier
+      responses:
+        "200":
+          description: Success get data with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Rizky
+                        address:
+                          type: string
+                          example: bogor
+        "404":
+          description: Can't find supplier with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find supplier with id {id}
+                  data:
+                    type: string
+                    example: null
+    put:
+      tags:
+        - Suppliers
+      summary: Update supplier data
+      description: Update supplier data (desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Rizky
+                address:
+                  type: string
+                  example: Bogor
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: update success
+                  data: 
+                    type: integer
+                    example: 
+        "404":
+          description: Can't find supplier with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find supplier with id {id}
+                  data:
+                    type: string
+                    example: null
+    delete:
+      tags:
+        - Suppliers
+      summary: Delete supplier data with id
+      description: Delete supplier data with id (desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of supplier
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data: 
+                    type: integer
+                    example: 
+        "404":
+          description: Can't find supplier with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find supplier with id {id}
+                  data:
+                    type: string
+                    example: null
+  /products:
+    post:
+      tags:
+        - Products
+      summary: Mendaftarkan data supplier baru
+      description: Mendafdarkan data supplier baru(desc)
+      operationId: post-register-products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Laptop Asus
+                quantity:
+                  type: integer
+                  example: 2
+      responses:
+        "201":
+          description: Success Register
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: laptop asus
+                      quantity:
+                        type: integer
+                        example: 2
+    get:
+      tags:
+        - Products
+      summary: GetAll Product data
+      description: GetAll Product data(desc)
+      responses:
+        "200":
+          description: Success get all data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Laptop asus
+                        quantity:
+                          type: integer
+                          example: 2
+  /products/{id}:
+    get:
+      tags:
+        - Products
+      summary: Get Product data with id
+      description: Get Product data with id(desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of product
+      responses:
+        "200":
+          description: Success get data with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Laptop Asus
+                        quantity:
+                          type: integer
+                          example: 2
+        "404":
+          description: Can't find product with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find product with id {id}
+                  data:
+                    type: string
+                    example: null
+    put:
+      tags:
+        - Products
+      summary: Update product data
+      description: Update product data (desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Laptop asus
+                quantity:
+                  type: integer
+                  example: 2
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: update success
+                  data: 
+                    type: integer
+                    example: 
+        "404":
+          description: Can't find product with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find product with id {id}
+                  data:
+                    type: string
+                    example: null
+    delete:
+      tags:
+        - Products
+      summary: Delete product data with id
+      description: Delete product data with id (desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of product
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data: 
+                    type: integer
+                    example: 
+        "404":
+          description: Can't find product with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find product with id {id}
+                  data:
+                    type: string
+                    example: null
+  /components:
+    post:
+      tags:
+        - Components
+      summary: Mendaftarkan data supplier baru
+      description: Mendafdarkan data supplier baru(desc)
+      operationId: post-register-components
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: RAM Corsair
+                description:
+                  type: string
+                  example: DDR 4 - 4GB
+      responses:
+        "200":
+          description: Success Register
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: RAM Corsair
+                      description:
+                        type: string
+                        example: DDR4 - 4GB
+    get:
+      tags:
+        - Components
+      summary: GetAll Component data
+      description: GetAll Component data(desc)
+      responses:
+        "200":
+          description: Success get all data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Laptop asus
+                        quantity:
+                          type: integer
+                          example: 2
+  /components/{id}:
+    get:
+      tags:
+        - Components
+      summary: Get Component data with id
+      description: Get Component data with id(desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of component
+      responses:
+        "200":
+          description: Success get data with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: RAM Corsair
+                        description:
+                          type: string
+                          example: DDR4 - 4GB
+        "404":
+          description: Can't find component with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find product with id {id}
+                  data:
+                    type: string
+                    example: null
+    put:
+      tags:
+        - Components
+      summary: Update component data
+      description: Update component data (desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of component
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: RAM Corsair
+                description:
+                  type: string
+                  example: DDR4 - 4GB
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: update success
+                  data: 
+                    type: integer
+                    example: 
+        "404":
+          description: Can't find component with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find component with id {id}
+                  data:
+                    type: string
+                    example: null
+    delete:
+      tags:
+        - Components
+      summary: Delete component data with id
+      description: Delete component data with id (desc)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: id of component
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                    example: success
+                  data: 
+                    type: string
+                    example: 
+        "404":
+          description: Can't find component with id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: can't find component with id {id}
+                  data:
+                    type: string
+                    example: null
+      
