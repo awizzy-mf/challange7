@@ -71,7 +71,6 @@ module.exports = {
   update: async (req, res, next) => {
     try {
       const { component_id } = req.params;
-
       const updated = await Component.update(req.body, {
         where: { id: component_id },
       });
@@ -98,7 +97,6 @@ module.exports = {
   destroy: async (req, res, next) => {
     try {
       const { component_id } = req.params;
-
       const deleted = await Component.destroy({ where: { id: component_id } });
 
       if (!deleted) {
