@@ -213,7 +213,7 @@ module.exports = {
             });
 
 
-        const updated = await User.update({avatar: uploadFile.url}, {where: {id: id}});
+        const updated = await User.update({profilePict: uploadFile.url}, {where: {id: id}});
 
         if (updated[0] == 0) {
             return res.status(404).json({
